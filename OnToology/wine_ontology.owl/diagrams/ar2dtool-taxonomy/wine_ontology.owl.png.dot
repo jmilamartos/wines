@@ -1,0 +1,11 @@
+digraph ar2dtool_diagram { 
+rankdir=LR;
+size="1000"
+node [shape = rectangle, color="black"]; "base:WineSugar" "base:WineColor" "base:WineTaste" "base:WineType" "base:WineFlavor" "base:WineBody" ; /*classes style*/
+	"base:WineTaste" -> "base:WineType" [ label = "rdfs:subClassOf" ];
+	"base:WineFlavor" -> "base:WineTaste" [ label = "rdfs:subClassOf" ];
+	"base:WineColor" -> "base:WineType" [ label = "rdfs:subClassOf" ];
+	"base:WineSugar" -> "base:WineTaste" [ label = "rdfs:subClassOf" ];
+	"base:WineBody" -> "base:WineTaste" [ label = "rdfs:subClassOf" ];
+
+}
