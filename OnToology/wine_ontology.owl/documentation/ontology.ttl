@@ -1,0 +1,376 @@
+@prefix : <http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#> .
+
+<http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasBody
+:hasBody rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasWineType ;
+         rdfs:domain :WineType ;
+         rdfs:range :WineBody ;
+         rdfs:label "hasBody" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasColor
+:hasColor rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasWineType ;
+          rdfs:domain :WineType ;
+          rdfs:range :WineColor ;
+          rdfs:label "hasColor" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasFlavor
+:hasFlavor rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasWineType ;
+           rdfs:domain :WineType ;
+           rdfs:range :WineFlavor ;
+           rdfs:label "hasFlavor" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasMaker
+:hasMaker rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:domain owl:Thing ;
+          rdfs:range :Winery ;
+          rdfs:comment "A wine has a wineMaker" ;
+          rdfs:label "hasMaker" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasSugar
+:hasSugar rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasWineType ;
+          rdfs:domain :WineType ;
+          rdfs:range :WineSugar ;
+          rdfs:label "hasSugar" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasWineType
+:hasWineType rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:domain :Wine ;
+             rdfs:range :WineType ;
+             rdfs:label "hasWineType" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#locatedIn
+:locatedIn rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdfs:domain owl:Thing ;
+           rdfs:range :Region ;
+           rdfs:comment "Where's the wine located" ;
+           rdfs:label "locatedIn" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Region
+:Region rdf:type owl:Class ;
+        rdfs:comment "Wine Region" ;
+        rdfs:label "Region" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Wine
+:Wine rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :locatedIn ;
+                        owl:someValuesFrom :Region
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasMaker ;
+                        owl:allValuesFrom :Winery
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasBody ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasColor ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasFlavor ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasMaker ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ,
+                      [ rdf:type owl:Restriction ;
+                        owl:onProperty :hasSugar ;
+                        owl:cardinality "1"^^xsd:nonNegativeInteger
+                      ] ;
+      rdfs:comment "Wines" ;
+      rdfs:label "Wine" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineBody
+:WineBody rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Class ;
+                                owl:oneOf ( :Full
+                                            :Light
+                                            :Medium
+                                          )
+                              ] ;
+          rdfs:subClassOf :WineTaste ;
+          rdfs:comment "WineBody could be Full, Light or Medium" ;
+          rdfs:label "WineBody" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineColor
+:WineColor rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:oneOf ( :Red
+                                             :Rose
+                                             :White
+                                           )
+                               ] ;
+           rdfs:subClassOf :WineType ;
+           rdfs:comment "WineColor could be either Red,Rose or White" ;
+           rdfs:label "WineColor" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineFlavor
+:WineFlavor rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Class ;
+                                  owl:oneOf ( :Delicate
+                                              :Moderate
+                                              :Strong
+                                            )
+                                ] ;
+            rdfs:subClassOf :WineTaste ;
+            rdfs:comment "WineFlavor could be either Delicate, Moderate or Strong" ;
+            rdfs:label "WineFlavor" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineSugar
+:WineSugar rdf:type owl:Class ;
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:oneOf ( :Dry
+                                             :OffDry
+                                             :Sweet
+                                           )
+                               ] ;
+           rdfs:subClassOf :WineTaste ;
+           rdfs:comment "WineSugar could be Dry, OffDry or Sweet" ;
+           rdfs:label "WineSugar" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineTaste
+:WineTaste rdf:type owl:Class ;
+           rdfs:subClassOf :WineType ;
+           rdfs:comment "WineTaste could be either WineSugar, WineFlavor or WineBody" ;
+           rdfs:label "WineTaste" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineType
+:WineType rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Class ;
+                                owl:unionOf ( :WineColor
+                                              :WineTaste
+                                            )
+                              ] ;
+          rdfs:comment "WineType could be either WineColor or WineTaste" ;
+          rdfs:label "WineType" .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Winery
+:Winery rdf:type owl:Class ;
+        rdfs:comment "WineProducers" ;
+        rdfs:label "Winery" .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Bonarda
+:Bonarda rdf:type owl:NamedIndividual ,
+                  :Winery .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Delicate
+:Delicate rdf:type owl:NamedIndividual ,
+                   :WineFlavor ,
+                   owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#DomainesFabre
+:DomainesFabre rdf:type owl:NamedIndividual ,
+                        :Winery .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Dry
+:Dry rdf:type owl:NamedIndividual ,
+              :WineSugar ,
+              owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#FrenchRegion
+:FrenchRegion rdf:type owl:NamedIndividual ,
+                       :Region .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Full
+:Full rdf:type owl:NamedIndividual ,
+               :WineBody ,
+               owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Haut-Medoc
+:Haut-Medoc rdf:type owl:NamedIndividual ,
+                     :Wine ;
+            :hasBody :Medium ;
+            :hasColor :White ;
+            :hasFlavor :Strong ;
+            :hasMaker :DomainesFabre ;
+            :hasSugar :Sweet ;
+            :locatedIn :FrenchRegion .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#ItalianRegion
+:ItalianRegion rdf:type owl:NamedIndividual ,
+                        :Region .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#LaMontesa
+:LaMontesa rdf:type owl:NamedIndividual ,
+                    :Wine ;
+           :hasBody :Full ;
+           :hasColor :Red ;
+           :hasFlavor :Delicate ;
+           :hasMaker :Rioja ;
+           :hasSugar :Dry ;
+           :locatedIn :SpanishRegion .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Light
+:Light rdf:type owl:NamedIndividual ,
+                :WineBody ,
+                owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Medium
+:Medium rdf:type owl:NamedIndividual ,
+                 :WineBody ,
+                 owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Moderate
+:Moderate rdf:type owl:NamedIndividual ,
+                   :WineFlavor ,
+                   owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#OffDry
+:OffDry rdf:type owl:NamedIndividual ,
+                 :WineSugar ,
+                 owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Red
+:Red rdf:type owl:NamedIndividual ,
+              :WineColor ,
+              owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Rioja
+:Rioja rdf:type owl:NamedIndividual ,
+                :Winery .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Rose
+:Rose rdf:type owl:NamedIndividual ,
+               :WineColor ,
+               owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#SpanishRegion
+:SpanishRegion rdf:type owl:NamedIndividual ,
+                        :Region .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Strong
+:Strong rdf:type owl:NamedIndividual ,
+                 :WineFlavor ,
+                 owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Sweet
+:Sweet rdf:type owl:NamedIndividual ,
+                :WineSugar ,
+                owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#White
+:White rdf:type owl:NamedIndividual ,
+                :WineColor ,
+                owl:Thing .
+
+
+###  http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Zuccardi
+:Zuccardi rdf:type owl:NamedIndividual ,
+                   :Wine ;
+          :hasBody :Light ;
+          :hasColor :Rose ;
+          :hasFlavor :Moderate ;
+          :hasMaker :Bonarda ;
+          :hasSugar :OffDry ;
+          :locatedIn :ItalianRegion .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Bonarda
+                        :DomainesFabre
+                        :Rioja
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Delicate
+                        :Moderate
+                        :Strong
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Dry
+                        :OffDry
+                        :Sweet
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Full
+                        :Light
+                        :Medium
+                      )
+] .
+
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( :Red
+                        :Rose
+                        :White
+                      )
+] .
+
+
+###  Generated by the OWL API (version 5.1.18) https://github.com/owlcs/owlapi/

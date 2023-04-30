@@ -1,0 +1,72 @@
+{
+  "@context" : {
+    "WineColor" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineColor"
+    },
+    "WineType" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineType"
+    },
+    "Winery" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Winery"
+    },
+    "WineTaste" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineTaste"
+    },
+    "Thing" : {
+      "@id" : "http://www.w3.org/2002/07/owl#Thing"
+    },
+    "hasMaker" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasMaker",
+      "@type" : "@id"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label"
+    },
+    "hasColor" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasColor",
+      "@type" : "@id"
+    },
+    "WineSugar" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineSugar"
+    },
+    "hasWineType" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasWineType",
+      "@type" : "@id"
+    },
+    "topObjectProperty" : {
+      "@id" : "http://www.w3.org/2002/07/owl#topObjectProperty",
+      "@type" : "@id"
+    },
+    "WineFlavor" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineFlavor"
+    },
+    "hasBody" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasBody",
+      "@type" : "@id"
+    },
+    "hasFlavor" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasFlavor",
+      "@type" : "@id"
+    },
+    "hasSugar" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#hasSugar",
+      "@type" : "@id"
+    },
+    "locatedIn" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#locatedIn",
+      "@type" : "@id"
+    },
+    "comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
+    },
+    "Region" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Region"
+    },
+    "WineBody" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#WineBody"
+    },
+    "Wine" : {
+      "@id" : "http://www.semanticweb.org/jordi/ontologies/2023/3/untitled-ontology-5#Wine"
+    }
+  }
+}
